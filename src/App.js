@@ -1,25 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import { Provider } from 'react-redux';
+
+import store from './store'
+import Home from './Containers/Home';
+import Header from './Containers/Header';
+import Footer from './Containers/Footer';
+import ErrorBoundary from './Components/ErrorBoundary';
+import NoPageFound from './Components/PageNotFound';
+import { MainHomeWrapper } from './Containers/Home/skins';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ErrorBoundary>
+      <Provider store={store}>
+        <MainHomeWrapper>
+          <Header />
+            <Switch>
+              <Route path="/" exact render={() => <Redirect to="/home" />} />
+              <Route exact path="/home" component={Home} />
+              <Route component={NoPageFound} />
+            </Switch>
+          <Footer />
+        </MainHomeWrapper>
+      </Provider>
+    </ErrorBoundary>
   );
 }
 

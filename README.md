@@ -66,3 +66,7 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+### `npm run ssr`
+
+To run Server Side Rendering we need to do npm run build and then run npm run ssr to see the server side rendering of the landing page
